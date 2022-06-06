@@ -10,7 +10,7 @@
  * @version 2.0.1
  * @link https://dwd.moe
  * @date 2020-02-02
- * @test 2333333333
+ * @test 23333333355
  */
 
 if(!defined('__TYPECHO_ROOT_DIR__')) exit;
