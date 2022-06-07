@@ -13,7 +13,7 @@ jobs:
       run: |
         mkdir build
         cp -r LICENSE README.md archive.php bangumi.php functions.php links.php page.php post.php screenshot.jpg index.php 404.php libs/ includes/ assets/ build
-        cd build && zip -q -r Cuckoo-Dev.zip * && mv Cuckoo-Dev.zip ../ && cd -
+        cd build && zip -q -r Cuckoo.zip * && mv Cuckoo.zip ../ && cd -
     - name: Create New Release
       id: create_release
       uses: actions/create-release@v1
@@ -31,6 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ github.ref }}.zip
-          asset_name: ${{ github.ref }}.zip
+          asset_path: ./Cuckoo.zip
+          asset_name: Cuckoo-${{ github.ref_name }}.zip
           asset_content_type: application/zip
