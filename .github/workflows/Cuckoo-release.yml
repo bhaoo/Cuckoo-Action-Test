@@ -19,8 +19,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: fromJSON(${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases)[0].upload_url
-        release_id: fromJSON(${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases)[0].id
+        upload_url: fromJSON("${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases")[0].upload_url
+        release_id: fromJSON("${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases")[0].id
         asset_path: ./Cuckoo.zip
         asset_name: Cuckoo-${{ github.ref_name }}.zip
         asset_content_type: application/zip
