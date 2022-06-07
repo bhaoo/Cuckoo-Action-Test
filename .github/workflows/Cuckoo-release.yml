@@ -15,7 +15,7 @@ jobs:
         cp -r LICENSE README.md archive.php bangumi.php functions.php links.php page.php post.php screenshot.jpg index.php 404.php libs/ includes/ assets/ build
         cd build && zip -q -r Cuckoo.zip * && mv Cuckoo.zip ../ && cd -
     - name: Run test echo
-      run: echo fromJSON(${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases)
+      run: echo fromJSON("${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases")
     - name: Update Files
       uses: WebFreak001/deploy-nightly@v1.1.0
       env:
