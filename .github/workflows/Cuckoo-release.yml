@@ -14,23 +14,14 @@ jobs:
         mkdir build
         cp -r LICENSE README.md archive.php bangumi.php functions.php links.php page.php post.php screenshot.jpg index.php 404.php libs/ includes/ assets/ build
         cd build && zip -q -r Cuckoo.zip * && mv Cuckoo.zip ../ && cd -
-    - name: Create New Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Update Files
+      uses: WebFreak001/deploy-nightly@v1.1.0
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: false
-          prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Cuckoo.zip
-          asset_name: Cuckoo-${{ github.ref_name }}.zip
-          asset_content_type: application/zip
+        upload_url: fromJSON(${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases)[0].upload_url
+        release_id: fromJSON(${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases)[0].id
+        asset_path: ./Cuckoo.zip
+        asset_name: Cuckoo-${{ github.ref_name }}.zip
+        asset_content_type: application/zip
+        max_releases: 1
