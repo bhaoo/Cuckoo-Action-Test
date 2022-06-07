@@ -18,7 +18,7 @@ jobs:
       id: get-upload-url
       uses: senmu/download-json-property-action@v1.1.0
       with:
-        url: '${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases'
+        url: 'https://api.github.com/repos/bhaoo/Cuckoo-Action-Test/releases'
         property_path: upload_url
     - name: Get code coverage from service
       run: echo ${{ steps.get-upload-url.outputs.value }}
