@@ -14,8 +14,14 @@ jobs:
         mkdir build
         cp -r LICENSE README.md archive.php bangumi.php functions.php links.php page.php post.php screenshot.jpg index.php 404.php libs/ includes/ assets/ build
         cd build && zip -q -r Cuckoo.zip * && mv Cuckoo.zip ../ && cd -
-    - name: Run test echo
-      run: echo fromJSON("${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases")
+    - name: Get Upload URL
+      id: get-upload-url
+      uses: senmu/download-json-property-action@v1.1.0
+      with:
+        url: '${{ github.api_url }}/repos/bhaoo/Cuckoo-Action-Test/releases'
+        property_path: upload_url
+    - name: Get code coverage from service
+      run: echo ${{ steps.get-upload-url.outputs.value }}
     - name: Update Files
       uses: WebFreak001/deploy-nightly@v1.1.0
       env:
